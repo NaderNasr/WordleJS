@@ -44,3 +44,23 @@ body {
 .input_container button:last-child {
   width: 43%;
 }
+
+.tile_container div {
+  /* adding display flex will convert them to rows */
+  display: flex;
+}
+
+.tile_container .tile {
+  width: 62px;
+  height: 62px;
+  border: 2px solid #3a3a3c;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin: 2px;
+}
+
+.message_container {
+  height: 30px;
+}
+
