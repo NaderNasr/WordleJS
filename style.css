@@ -27,7 +27,7 @@ body {
 }
 
 .input_container {
-  width: 510px;
+  width: 50%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -39,4 +39,8 @@ body {
   margin: 5px;
   border-radius: 5%;
   background-color: rgb(0, 58, 106);
+}
+
+.input_container button:last-child {
+  width: 43%;
 }
