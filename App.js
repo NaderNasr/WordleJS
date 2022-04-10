@@ -50,20 +50,21 @@ guesses.forEach((guess, guessesIndex) => {
   guess.forEach((tile, tileIndex) => {
     const tileElement = document.createElement('div');
     tileElement.setAttribute('id', `tile` + tileIndex);
+    tileElement.classList.add('tile');
     rowElement.append(tileElement);
   });
   tileDisplay.append(rowElement);
 });
 
 
-handleClick = () => {
-  console.log(`clicked!`);
+handleClick = (letter) => {
+  console.log(letter, `clicked!`);
 };
 
 keys.forEach((key) => {
   const buttonElement = document.createElement('button');
   buttonElement.textContent = key;
   buttonElement.setAttribute('id', key);
-  buttonElement.addEventListener('click', handleClick);
+  buttonElement.addEventListener('click', () => handleClick(key));
   keyboard.append(buttonElement);
 });
