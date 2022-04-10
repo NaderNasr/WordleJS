@@ -29,8 +29,8 @@ const keys = [
   'B',
   'N',
   'M',
-  '«',
-  'ENTER'
+  'DELETE',
+  'ENTER',
 ];
 
 handleClick = () => {
