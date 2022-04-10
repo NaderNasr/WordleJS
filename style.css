@@ -1,0 +1,33 @@
+* {
+  color: cornflowerblue;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color:black;
+}
+
+.game_container{
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title_container {
+  text-align: center;
+  width: 510px;
+  border-bottom: solid 1px #3a3a3c;
+}
+
+.tile_container {
+  width: 350px;
+  margin-bottom: 30px;
+}
+
+.input_container{
+  width: 510px;
+  display: flex;
+  flex-wrap: wrap;
+}
