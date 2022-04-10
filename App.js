@@ -2,6 +2,7 @@
 const tileDisplay = document.querySelector('.tile_container');
 const keyboard = document.querySelector('.input_container');
 
+//keyboard keys
 const keys = [
   'Q',
   'W',
@@ -32,6 +33,28 @@ const keys = [
   'DELETE',
   'ENTER',
 ];
+
+//5 letter word with 6 guess rows
+const guesses = [
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', ''],
+  ['', '', '', '', '']
+];
+
+guesses.forEach((guess, guessesIndex) => {
+  const rowElement = document.createElement('div');
+  rowElement.setAttribute('id', `guess_` + guessesIndex);
+  guess.forEach((tile, tileIndex) => {
+    const tileElement = document.createElement('div');
+    tileElement.setAttribute('id', `tile` + tileIndex);
+    rowElement.append(tileElement);
+  });
+  tileDisplay.append(rowElement);
+});
+
 
 handleClick = () => {
   console.log(`clicked!`);
