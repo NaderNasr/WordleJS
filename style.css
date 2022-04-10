@@ -1,13 +1,13 @@
 * {
-  color: cornflowerblue;
+  color: rgb(255, 255, 255);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background-color:black;
+  background-color: black;
 }
 
-.game_container{
+.game_container {
   height: 90vh;
   display: flex;
   flex-direction: column;
@@ -26,8 +26,17 @@ body {
   margin-bottom: 30px;
 }
 
-.input_container{
+.input_container {
   width: 510px;
   display: flex;
   flex-wrap: wrap;
+}
+
+.input_container button {
+  width: 60px;
+  height: 40px;
+  border: none;
+  margin: 5px;
+  border-radius: 5%;
+  background-color: rgb(0, 58, 106);
 }
