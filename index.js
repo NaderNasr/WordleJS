@@ -1,7 +1,7 @@
 const PORT = 9000;
 const axios = require("axios");
 const express = require('express');
-
+require.('dotenv').config();
 const app = express();
 
 
