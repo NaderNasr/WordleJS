@@ -61,7 +61,6 @@ body {
   padding-top: 20px;
 }
 
-
 .message_container {
   height: 30px;
 }
@@ -73,3 +72,32 @@ body {
   margin: 0;
 }
 
+.green_overlay {
+  background-color: #538d4e !important;
+  border: none !important;
+}
+.gray_overlay {
+  background-color: #555d54 !important;
+  border: none !important;
+}
+
+.yellow_overlay {
+  background-color: #cde258 !important;
+  border: none !important;
+}
+
+.tile.flip {
+  animation: 0.5s linear flipping;
+}
+
+@keyframes flipping {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
