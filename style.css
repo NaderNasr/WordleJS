@@ -58,9 +58,18 @@ body {
   display: flex;
   justify-content: center;
   margin: 2px;
+  padding-top: 20px;
 }
+
 
 .message_container {
   height: 30px;
+}
+
+.message_container p {
+  background-color: #818384;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0;
 }
 
