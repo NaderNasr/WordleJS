@@ -46,9 +46,8 @@ const guesses = [
   ['', '', '', '', '']
 ];
 
-const word = 'aaaaa';
+const word = 'QWERT';
 let isGameOver = false;
-
 let currentRow = 0;
 let currentTile = 0;
 
@@ -71,7 +70,7 @@ handleClick = (letter) => {
 
 const deleteLetter = () => {
   currentTile--;
-  const tile = document.getElementById('guessRow_' + currentRow + '_tile_' + currentTile);
+  const tile = document.getElementById(`guessRow_${currentRow}_tile_${currentTile}`);
   tile.textContent = '';
   guesses[currentRow][currentTile] = '';
   tile.setAttribute('data', '');
@@ -79,10 +78,10 @@ const deleteLetter = () => {
 
 guesses.forEach((guess, guessesIndex) => {
   const rowElement = document.createElement('div');
-  rowElement.setAttribute('id', `guess_` + guessesIndex);
+  rowElement.setAttribute('id', 'guessRow_' + guessesIndex);
   guess.forEach((tile, tileIndex) => {
     const tileElement = document.createElement('div');
-    tileElement.setAttribute('id', 'guessRow_' + guessesIndex + '_tile_' + tileIndex);
+    tileElement.setAttribute('id', `guessRow_${guessesIndex}_tile_${tileIndex}`);
     tileElement.classList.add('tile');
     rowElement.append(tileElement);
   });
@@ -99,7 +98,7 @@ keys.forEach((key) => {
 
 // Add letter to each tile incremented to each row.
 const addLetter = (letter) => {
-  const tile = document.getElementById('guessRow_' + currentRow + '_tile_' + currentTile);
+  const tile = document.getElementById(`guessRow_${currentRow}_tile_${currentTile}`);
   tile.textContent = letter;
   guesses[currentRow][currentTile] = letter;
   // console.log(guesses);
@@ -108,9 +107,10 @@ const addLetter = (letter) => {
 };
 
 const checkRow = () => {
-  const guess = guesses[currentRow].join('').toLowerCase();
+  const guess = guesses[currentRow].join('');
   if (currentTile > 4) {
-    console.log('user input: ' + guess, 'word of the day: ' + word);
+    console.log(`user input: ${guess} word of the day: ${word}`);
+    flipTile();
     if (word === guess) {
       // console.log('WOHOOOOOO!');
       showMessage('🎉');
@@ -142,3 +142,41 @@ const showMessage = (message) => {
   }, 2000);
 };
 
+
+const addColorToKey = (keyLetter, color) => {
+  const key = document.getElementById(keyLetter);
+  key.classList.add(color);
+};
+
+const flipTile = () => {
+  const flipped = document.getElementById(`guessRow_${currentRow}`).childNodes;
+
+  flipped.forEach((tile, index) => {
+
+    const dataLetter = tile.getAttribute('data');
+    // console.log('dataLetter', dataLetter);
+    // console.log('word', word[index], '#',index);
+    setTimeout(() => {
+      tile.classList.add('flip');
+      if (word[index] === dataLetter) {
+        // console.log(word[index] === dataLetter);
+        tile.classList.add('green_overlay');
+        addColorToKey(dataLetter, 'green_overlay');
+        console.log('green');
+      } else if (word.includes(dataLetter)) {
+        // console.log(word.includes(dataLetter));
+
+        tile.classList.add('yellow_overlay');
+        addColorToKey(dataLetter, 'yellow_overlay');
+        console.log('yellow');
+
+      } else {
+        // console.log(word.!includes(dataLetter) && word[index] !== dataLetter));
+        tile.classList.add('gray_overlay');
+        addColorToKey(dataLetter, 'green_overlay');
+        console.log('grey');
+
+      }
+    }, 500 * index);
+  });
+};
