@@ -1,0 +1,26 @@
+{
+  "name": "wordlejs",
+  "version": "1.0.0",
+  "description": "A wordle clone using vanilla JS, HTML, CSS",
+  "main": "App.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NaderNasr/WordleJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NaderNasr/WordleJS/issues"
+  },
+  "homepage": "https://github.com/NaderNasr/WordleJS#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
+  }
+}
