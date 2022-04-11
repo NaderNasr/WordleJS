@@ -151,32 +151,32 @@ const addColorToKey = (keyLetter, color) => {
 const flipTile = () => {
   const flipped = document.getElementById(`guessRow_${currentRow}`).childNodes;
 
-  flipped.forEach((tile, index) => {
+  let checkWord = word;
+  const guess = [];
 
-    const dataLetter = tile.getAttribute('data');
-    // console.log('dataLetter', dataLetter);
-    // console.log('word', word[index], '#',index);
+  flipped.forEach((tile) => {
+    guess.push({ letter: tile.getAttribute('data'), color: 'gray_overlay' });
+  });
+  
+  guess.forEach((guess, idx) => {
+    if (guess.letter === word[idx]) {
+      guess.color = 'green_overlay';
+      checkWord = checkWord.replace(guess.letter, '');
+    }
+  });
+
+  guess.forEach((guess) => {
+    if (checkWord.includes(guess.letter)) {
+      guess.color = 'orange_overlay';
+      checkWord = checkWord.replace(guess.letter, '');
+    }
+  });
+
+  flipped.forEach((tile, index) => {
     setTimeout(() => {
       tile.classList.add('flip');
-      if (word[index] === dataLetter) {
-        // console.log(word[index] === dataLetter);
-        tile.classList.add('green_overlay');
-        addColorToKey(dataLetter, 'green_overlay');
-        console.log('green');
-      } else if (word.includes(dataLetter)) {
-        // console.log(word.includes(dataLetter));
-
-        tile.classList.add('yellow_overlay');
-        addColorToKey(dataLetter, 'yellow_overlay');
-        console.log('yellow');
-
-      } else {
-        // console.log(word.!includes(dataLetter) && word[index] !== dataLetter));
-        tile.classList.add('gray_overlay');
-        addColorToKey(dataLetter, 'green_overlay');
-        console.log('grey');
-
-      }
+      tile.classList.add(guess[index].color);
+      addColorToKey(guess[index].letter, guess[index].color);
     }, 500 * index);
   });
 };
