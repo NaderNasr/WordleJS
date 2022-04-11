@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 const tileDisplay = document.querySelector('.tile_container');
 const keyboard = document.querySelector('.input_container');
+const messageDisplay = document.querySelector('.message_container');
+
 
 // keyboard keys
 const keys = [
@@ -44,6 +46,9 @@ const guesses = [
   ['', '', '', '', '']
 ];
 
+const word = 'aaaaa';
+let isGameOver = false;
+
 let currentRow = 0;
 let currentTile = 0;
 
@@ -56,7 +61,7 @@ handleClick = (letter) => {
   }
 
   if (letter === 'ENTER') {
-    console.log('Check row & New row selected');
+    checkRow();
     return;
   }
 
@@ -101,3 +106,39 @@ const addLetter = (letter) => {
   tile.setAttribute('data', letter);
   currentTile++;
 };
+
+const checkRow = () => {
+  const guess = guesses[currentRow].join('').toLowerCase();
+  if (currentTile > 4) {
+    console.log('user input: ' + guess, 'word of the day: ' + word);
+    if (word === guess) {
+      // console.log('WOHOOOOOO!');
+      showMessage('🎉');
+      isGameOver = true;
+      return;
+    } else {
+      if (currentRow >= 5) {
+        isGameOver = false;
+        showMessage('Game Over');
+        return;
+      }
+      if (currentRow < 5) {
+        currentRow++;
+        currentTile = 0;
+      }
+
+    }
+
+  }
+
+};
+
+const showMessage = (message) => {
+  const messageElement = document.createElement('p');
+  messageElement.textContent = message;
+  messageDisplay.append(messageElement);
+  setTimeout(() => {
+    messageDisplay.removeChild(messageElement);
+  }, 2000);
+};
+
