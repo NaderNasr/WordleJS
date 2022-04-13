@@ -4,6 +4,23 @@ const keyboard = document.querySelector('.input_container');
 const messageDisplay = document.querySelector('.message_container');
 
 
+
+let word;
+const getWordAPI = () => {
+  fetch('http://localhost:9000/word')
+    .then(data => data.json())
+    .then(json => {
+      console.log(json[0]);
+      // set api word to word
+      word = json[0].toUpperCase();
+
+    })
+    .catch((err) => console.log(err));
+};
+
+// fetch words and start game
+getWordAPI();
+
 // keyboard keys
 const keys = [
   'Q',
@@ -46,7 +63,6 @@ const guesses = [
   ['', '', '', '', '']
 ];
 
-const word = 'QWERT';
 let isGameOver = false;
 let currentRow = 0;
 let currentTile = 0;
@@ -54,18 +70,19 @@ let currentTile = 0;
 handleClick = (letter) => {
   console.log(letter, `clicked!`);
 
-  if (letter === 'DELETE') {
-    if (currentTile > 0) deleteLetter();
-    return;
-  }
+  if (!isGameOver) {
+    if (letter === 'DELETE') {
+      if (currentTile > 0) deleteLetter();
+      return;
+    }
 
-  if (letter === 'ENTER') {
-    checkRow();
-    return;
+    if (letter === 'ENTER') {
+      checkRow();
+      return;
+    }
+    // if letter !== ENTER or DELETE then add a letter
+    if (currentTile < 5 && currentRow < 6) addLetter(letter);
   }
-
-  // if letter !== ENTER or DELETE then add a letter
-  if (currentTile < 5 && currentRow < 6) addLetter(letter);
 };
 
 const deleteLetter = () => {
@@ -118,7 +135,7 @@ const checkRow = () => {
       return;
     } else {
       if (currentRow >= 5) {
-        isGameOver = false;
+        isGameOver = true;
         showMessage('Game Over');
         return;
       }
@@ -157,7 +174,7 @@ const flipTile = () => {
   flipped.forEach((tile) => {
     guess.push({ letter: tile.getAttribute('data'), color: 'gray_overlay' });
   });
-  
+
   guess.forEach((guess, idx) => {
     if (guess.letter === word[idx]) {
       guess.color = 'green_overlay';
