@@ -1,9 +1,12 @@
-const PORT = 9000;
+require('dotenv').config();
 const axios = require("axios");
 const express = require('express');
-require('dotenv').config();
-const app = express();
+const cors = require('cors');
 
+const app = express();
+const PORT = 9000;
+
+app.use(cors());
 
 app.get('/word', (req, res) => {
   const options = {
@@ -12,7 +15,7 @@ app.get('/word', (req, res) => {
     params: { count: '5', wordLength: '5' },
     headers: {
       'X-RapidAPI-Host': 'random-words5.p.rapidapi.com',
-      'X-RapidAPI-Key': process.env.RAPID_API_RANDOM_WORD_KEY
+      'X-RapidAPI-Key': process.env.X_RapidAPI_Key
     }
   };
 
